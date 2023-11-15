@@ -6,5 +6,4 @@ func main(){
 	String A = "Hello there"
 
 	fmtPrintln(A)
-	
 }
