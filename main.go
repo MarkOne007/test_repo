@@ -2,8 +2,10 @@ package main
 
 import "fmt"
 
-func main(){
-	String A = "Hello there"
+func main() {
 
-	fmtPrintln(A)
+	var Alfa string
+	Alfa = "Hello there"
+
+	fmt.Println(Alfa)
 }
