@@ -13,5 +13,5 @@ jobs:
       - name: Run Super-Linter
         uses: GitHub/super-linter@v4
         env:
-          DEFAULT_BRANCH: main
+          DEFAULT_BRANCH: actions
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
