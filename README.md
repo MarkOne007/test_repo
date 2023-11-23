@@ -1,2 +1,2 @@
 # test_repo
-Created to learn about git and github
+Created to learn about git and GitHub
