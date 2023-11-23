@@ -8,7 +8,7 @@ import (
 func main() {
 
 	var Alfa string
-	Alfa = "Hello there"
+	Alfa = "Hello There!"
 
 	fmt.Println(Alfa)
 	fmt.Println(t1.Now())
