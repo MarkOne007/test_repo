@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
-	t1 "time"
+	f "fmt"
+	t "time"
 )
 
 func main() {
@@ -10,6 +10,6 @@ func main() {
 	var Alfa string
 	Alfa = "Hello There!"
 
-	fmt.Println(Alfa)
-	fmt.Println(t1.Now())
+	f.Println(Alfa)
+	f.Println(t.Now())
 }
