@@ -81,7 +81,7 @@ Linux kiosk mode (single-application-mode) configuration steps
     b) Ctrl + S to open a window
         --> select Network
         --> type an URL address 
-                rtsp://camera-IP:port/file-name [optional]              // ask your supervisor for the camera-IP and port or if it needs the username and password
+                rtsp://<camera-IP>:<port>/<file-name> [optional]              // ask your supervisor for the camera-IP and port or if it needs the username and password
         --> select Stream
             ---> leave as it is
             ---> Next
@@ -95,16 +95,41 @@ Linux kiosk mode (single-application-mode) configuration steps
             ---> select 'remember password'
         --> press OK
 
-5. Configure the 'gnome-kiosk-script' file 
+4a. Manual OBS Studio configuration
+    a) log into Admin account
+        --> open obs via terminal 
+        --> press plus sign at Video Source to add new source
+        --> in source properties:
+            ---> uncheck local file
+            ---> in source bracket type rtsp://<login-passwd>@<camera-IP>:<port>/<file-name>       // ask your supervisor for the IP, port and/or the username and password
+        --> press OK to save
+        --> press RMB 
+            ---> point on image distortion
+            ---> select 'stretch to the screen option'
+        --> copy the video source
+            ---> adjust screens to the window
+        --> lock sources
+
+5a. Configure the 'gnome-kiosk-script' file - VLC
     a) stay in the Admin account
     b) open terminal
         --> log into the root
         --> vi /home/kiosk/.local/bin/gnome-kiosk-script
         --> replace firefox path to:                                         
-                vlc --fullscreen rtsp://camera-IP:port/file-name [optional]
+                vlc --fullscreen rtsp://<camera-IP>:<port>/<file-name> [optional]
             ---> save   
         --> restart desktop
     c) type kiosk password to authentication keys
+
+5b. Configure the 'gnome-kiosk-script' file - OBS Studio
+    a) stay in the Admin account
+    b) open terminal
+        --> log into the root
+        --> vi /home/kiosk/.local/bin/gnome-kiosk-script
+        --> replace VLC path to:                                         
+                obs --safe-mode --always-on-top --scene <scene-name>
+            ---> save   
+        --> restart desktop
 
 6. Install GDM Settings
     a) re-log to the Admin
@@ -129,4 +154,34 @@ Linux kiosk mode (single-application-mode) configuration steps
         --> systemctl restart sshd.service
         --> systemctl status sshd.service
     [service is enable (green colour), server listening on :: port 22]
+
+8. Troubleshooting - SEAHORSE Software - authentication keys
+    a) re-log to the Admin account
+        --> open temrinal
+        --> switch to root
+        --> kill the kiosk session process
+            ---> return to the Admin session
+            ---> change kiosk account password
+    b) install seahorse (keys & passwords)
+        --> yum install seahorse -y
+        --> open new terminal window
+        --> type 'seahorse' to open an app
+    c) solve the authentication issue during startup
+        --> log into kiosk session - make sure there is a Gnome Session active option
+        --> open an 'keys & passwords' app
+	--> remove exitsing password session
+            	[instead of confirm type correct password of account that is in use now]
+        --> set new password to account key database
+            ---> press right mouse button on the account key database chart
+            ---> press 'change password' 
+                [instead of confirm type correct password of account that is in use now]
+            ---> set new empty password 
+                [leave brackets blank]
+            ---> contiune
+            ---> continue
+        --> restart desktop
+        --> fill a vlc prompt with correct data
+            ---> check 'remember password'
+        --> press ok button
+        --> restart desktop
 
