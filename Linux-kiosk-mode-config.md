@@ -1,4 +1,4 @@
-Linux kiosk mode (single-application-mode) configuration steps
+Linux kiosk mode (single-application-mode) configuration steps || Fedora 39 Workstation
 
 1. Install Fedora Workstation 39
     a) set 
@@ -109,6 +109,8 @@ Linux kiosk mode (single-application-mode) configuration steps
         --> copy the video source
             ---> adjust screens to the window
         --> lock sources
+	--> on the navigation bar in the 'Panels' chart
+            ---> unmark all of panels
 
 5a. Configure the 'gnome-kiosk-script' file - VLC
     a) stay in the Admin account
@@ -155,7 +157,7 @@ Linux kiosk mode (single-application-mode) configuration steps
         --> systemctl status sshd.service
     [service is enable (green colour), server listening on :: port 22]
 
-8. Troubleshooting - SEAHORSE Software - authentication keys
+8. Troubleshooting - SEAHORSE Software - authentication keys || if you are using the VLC Software
     a) re-log to the Admin account
         --> open temrinal
         --> switch to root
