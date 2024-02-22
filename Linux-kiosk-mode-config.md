@@ -1,4 +1,4 @@
-Linux kiosk mode (single-application-mode) configuration steps || Fedora 39 Workstation
+Linux kiosk mode (single-application-mode) configuration steps || Fedora 39 Workstation || Wayland Session
 
 1. Install Fedora Workstation 39
     a) set 
@@ -101,7 +101,7 @@ Linux kiosk mode (single-application-mode) configuration steps || Fedora 39 Work
         --> press plus sign at Video Source to add new source
         --> in source properties:
             ---> uncheck local file
-            ---> in source bracket type rtsp://<login-passwd>@<camera-IP>:<port>/<file-name>       // ask your supervisor for the IP, port and/or the username and password
+            ---> in source bracket type rtsp://<login:passwd>@<camera-IP>:<port>/<file-name>       // ask your supervisor for the IP, port and/or the username and password
         --> press OK to save
         --> press RMB 
             ---> point on image distortion
