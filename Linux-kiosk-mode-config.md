@@ -97,7 +97,8 @@ Linux kiosk mode (single-application-mode) configuration steps || Fedora 39 Work
 
 4a. Manual OBS Studio configuration
     a) log into Admin account
-        --> open obs via terminal 
+        --> open obs via terminal
+	    ---> during initial settings mark a 'local recording'
         --> press plus sign at Video Source to add new source
         --> in source properties:
             ---> uncheck local file
