@@ -2,7 +2,7 @@ Ubuntu Web Server - configuration steps | Ubuntu 22.04 LTS
 
 Part I - Install Ubuntu
 
-a) create an Admin account with Administrator priviliges
+a) create an Admin account with Administrator privileges
     --> open a terminal
     --> set a root password [sudo passwd root]
 b) switch to root
@@ -160,4 +160,37 @@ d) apt-get update & apt-get upgrade -y [if it needs]
 
 [in addition you may compare them to see which modules are missing - the compare process is presented on the website]
 
-Part Vi -
+Part VI - Install and configure MariaDB
+    based on
+        https://mariadb.com/kb/en/mariadb-secure-installation/
+        https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-22-04
+        | copy the link to get more info
+
+a) log into Admin account
+b) open terminal
+c) su -
+d) apt-get update & apt-get upgrade -y [if it needs]
+
+1. Install MariaDB
+    --> apt install mariadb-server
+
+2. Configure MariaDB
+    --> mysql_secure_installation
+    [proceed with steps during configuration]
+        ---> Switch to unix_socket authentication - n
+        ---> Change/Set the root password? - n
+        ---> Remove anonymous users? - y
+        ---> Disallow root login remotely? - y
+        ---> Remove test database and access to it? - y
+        ---> Reload privilege tables now? - y
+
+3. [Optional] Create an Administrative user
+    --> mariadb
+    --> GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+    --> FLUSH PRIVILEGES;
+    --> exit
+
+4. Testing MariaDB
+    --> systemctl status mariadb
+        ---> systemctl start mariadb {if it's not running}
+    --> mysqladmin version
