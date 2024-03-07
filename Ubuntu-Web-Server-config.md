@@ -61,7 +61,8 @@ g) open https on 443 port
     --> ufw allow 443/tcp
 
 Part IV - OpenSSL configuration | Self-Signed SSL Certificate
-    based on https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-20-04 | copy the link to get more info
+    based on https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-20-04
+    | copy the link to get more info
 
 a) log into Admin account
 b) open terminal
@@ -152,6 +153,13 @@ d) apt-get update & apt-get upgrade -y [if it needs]
 
 6. Verifying Apache's PHP version
     --> ll /etc/apache2/mods-enabled/php*
+    --> nano /var/www/gci/info.php
+        ---> [type inside the file]
+            <?php
+                phpinfo();
+            ?>
+        ---> save
+        ---> https://<your-website>/info.php [plain this to the browser to verify php version]
     --> php -v
 
 7. Adding modules to PHP 8.2
@@ -163,7 +171,7 @@ d) apt-get update & apt-get upgrade -y [if it needs]
 Part VI - Install and configure MariaDB
     based on
         https://mariadb.com/kb/en/mariadb-secure-installation/
-        https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-22-04
+        https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-22-04 [do not proceed with step 3 on the website]
         | copy the link to get more info
 
 a) log into Admin account
@@ -172,7 +180,7 @@ c) su -
 d) apt-get update & apt-get upgrade -y [if it needs]
 
 1. Install MariaDB
-    --> apt install mariadb-server
+    --> apt install mariadb-server mariadb-client
 
 2. Configure MariaDB
     --> mysql_secure_installation
@@ -184,13 +192,36 @@ d) apt-get update & apt-get upgrade -y [if it needs]
         ---> Remove test database and access to it? - y
         ---> Reload privilege tables now? - y
 
-3. [Optional] Create an Administrative user
-    --> mariadb
-    --> GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
-    --> FLUSH PRIVILEGES;
-    --> exit
-
-4. Testing MariaDB
+3. Testing MariaDB
     --> systemctl status mariadb
         ---> systemctl start mariadb {if it's not running}
     --> mysqladmin version
+
+Part VII - Install and configure WordPress
+    based on https://www.digitalocean.com/community/tutorials/install-wordpress-on-ubuntu | copy the link to get more info
+
+a) log into Admin account
+b) open terminal
+c) su -
+d) apt-get update & apt-get upgrade -y [if it needs]
+
+1. Create WordPress Database
+    --> mysql -u root -p [enter your root password]
+    --> CREATE DATABASE wordpress_db;
+    --> CREATE USER '<chosen_name>'@'<ip_host>' IDENTIFIED BY 'password';
+    --> GRANT ALL ON wordpress_db.* TO '<chosen_name>'@'<ip_host>' IDENTIFIED BY 'password';
+    --> FLUSH PRIVILEGES;
+    --> exit
+
+2. Install WordPress CMS
+    --> cd /tmp
+    --> wget https://wordpress.org/latest.tar.gz
+    --> tar -xvf latest.tar.gz
+    --> cp -R wordpress /var/www/gci/
+    --> chown -R www-data:www-data /var/www/gci/wordpress/
+    --> chmod -R 755 /var/www/gci/wordpress/
+    --> cd /var/www/html/wordpress/wp-content/
+        ---> mkdir uploads
+    --> chown -R www-data:www-data /var/www/gci/wordpress/wp-content/uploads/
+    --> https://<your-website>/wordpress
+    [Now you can set up WordPress by yourself]
