@@ -19,6 +19,7 @@ b) open terminal
 c) apt install apache2
 d) creating a simply website:
     --> mkdir /var/www/gci/
+    	---> cd /var/www/gci/
     --> nano index.html [insert here whatever you with html syntax or paste a code from tutorial site above]
         ---> press Ctrl + X , then 'y' to save the changes
 e) setting up a VirtualHost:
@@ -33,6 +34,8 @@ f) activating VirtualHost:
     --> a2ensite gci.conf
     --> service apache2 reload
     --> systemctl status apache2
+    --> nano /etc/hosts
+        ---> add server ip and website name here (example): 127.0.0.3   gci.example.com
 g) type your host name in a browser to see the result
 
 helpful directory info:
@@ -73,7 +76,7 @@ e) ufw allow "Apache Full"
 1. Enabling - mod_ssl
     --> a2enmod ssl
     --> systemctl restart apache2
-it is now ready to use
+(it is now ready to use)
 
 2. Creating the SSL Certificate
     --> openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
@@ -93,11 +96,11 @@ it is now ready to use
         SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
         SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
     
-    --> save it
     --> replace the port inside VirtualHost to 443
 
         <VirtualHost *:80> === <VirtualHost *:443>
 
+    --> save it
     --> apache2ctl configtest [to be sure that apache syntax is OK]
         ---> systemctl reload apache2
         ---> systemctl status apache2
@@ -124,7 +127,7 @@ helpful directory info:
     --> /etc/ssl/private/ - keys stored
     --> /etc/ssl/certs/ - certificate stored ---> ll /etc/ssl/certs/apache-selfsigned.crt (check if exists)
 
-Part V - Installing PHP on Ubuntu | PHP 8.2 
+Part V - Installing PHP on Ubuntu | PHP 8.2 | PHP 8.1
     based on https://www.liquidweb.com/kb/install-php-on-ubuntu/ | copy the link to get more info
 
 a) log into Admin account
