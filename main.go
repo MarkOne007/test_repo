@@ -1,15 +1,19 @@
 package main
 
 import (
-	f "fmt"
-	t "time"
+	"fmt"
 )
 
 func main() {
 
 	var Alfa string
-	Alfa = "Hello There!"
+	Alfa = "Who are you?!"
+	//who is a John Smith? - Alpha wonders
 
-	f.Println(Alfa)
-	f.Println(t.Now())
+	var Delta string
+	Delta = "Bossss!"
+	//John Smith is Shadow - Delta reaction
+
+	fmt.Println(Alfa)
+	fmt.Println(Delta)
 }
