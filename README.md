@@ -1,4 +1,6 @@
 # test_repo
-Created to learn about Git and GitHub
+Created to learn Git and GitHub
 
-Some documentation of configurations on Linux operating system added
+| Linux OS config files documentation |
+
+| Some random languages | 
